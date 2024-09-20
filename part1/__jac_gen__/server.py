@@ -26,3 +26,20 @@ class add_two_numbers(_Jac.Walker):
 
     def return_message(self, _jac_here_: _Jac.RootType) -> None:
         _Jac.report({'response': self.number1 + self.number2})
+
+@_Jac.make_walker(on_entry=[_Jac.DSFunc('is_palindrome', _Jac.RootType)], on_exit=[])
+@__jac_dataclass__(eq=False)
+class strings(_Jac.Walker):
+    string: str
+
+    def is_palindrome(self, _jac_here_: _Jac.RootType) -> None:
+        l = 0
+        r = len(self.string) - 1
+        response = f'{self.string} is a palindrom'
+        while l < r:
+            if self.string[l] != self.string[r]:
+                response = f'{self.string} is not a palindrom'
+                break
+            l += 1
+            r -= 1
+        _Jac.report({'response': response})

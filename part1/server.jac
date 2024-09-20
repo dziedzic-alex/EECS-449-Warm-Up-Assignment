@@ -27,23 +27,24 @@ walker add_two_numbers {
     }
 }
 
-walker is_palindrome {
+walker strings {
     has string: str;
+    can is_palindrome with `root entry {
+        l = 0;
+        r = len(self.string) - 1;
 
-    l = 0
-    r = len(self.string) - 1
+        response = f"'{self.string}' is a palindrome"; 
+        while l < r {
+            if self.string[l] != self.string[r] {
+                response = f"'{self.string}' is not a palindrome";
+                break;
+            }
+            l += 1;
+            r -= 1;
+        }
 
-    palindrome = True
-    while l < r:
-        if self.string[l] != self.string[r]:
-            palindrome = False
-            break
-        l += 1
-        r -= 1
-    
-    can return_message with `root entry {
         report {
-            "response": palindrome
+            "response": response
         };
     }
 }
