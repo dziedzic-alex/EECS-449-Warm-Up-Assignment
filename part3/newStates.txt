@@ -1,0 +1,3 @@
+Added a GPT and LLAMA chat type which routes user queries to the requested model (gpt-4o-mini or llama 3.1). Users can specify in their query if they want their query to be processed by GPT or LLAMA (RAG used in all cases).
+
+If a chat is classified as GPT or LLAMA, the corresponding chat node will be traversed where the user query will be sent to GPT or LLAMA based on the classification and the response will be sent back to the frontend.
